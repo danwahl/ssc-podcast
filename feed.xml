@@ -1,25 +1,37 @@
 ---
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0"
-     xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>{{ site.title }}</title>
-    <googleplay:author>{{ site.author }}</googleplay:author>
+    <itunes:author>{{ site.author }}</itunes:author>
     <description>{{ site.description }}</description>
-    <googleplay:image href="{{ site.url }}{{ site.baseurl }}/{{ site.image }}"/>
+    <image>
+      <url>{{ site.url }}{{ site.baseurl }}/{{ site.image }}</url>
+      <title>{{ site.title }}</title>
+      <link>{{ site.url }}{{ site.baseurl }}</link>
+    </image>
+    <itunes:image href="{{ site.url }}{{ site.baseurl }}/{{ site.image }}"/>
     <language>en-us</language>
-    <link>{{ site.url }}/</link>
+    <link>{{ site.url }}{{ site.baseurl }}/</link>
+    <atom:link href="{{ site.url }}{{ site.baseurl }}/feed.xml" rel="self" type="application/rss+xml"/>
+    <itunes:category text="Technology"/>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:owner>
+      <itunes:name>{{ site.author }}</itunes:name>
+      <itunes:email>{{ site.email }}</itunes:email>
+    </itunes:owner>
     {% for post in site.posts %}
-    <item>
-      <title>{{ post.title }}</title>
-      <description>{{ post.description }}</description>
-      <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S PST" }}</pubDate>
-      <enclosure url="{{ site.url }}{{ site.baseurl }}/podcasts/{{ post.guid }}.mp3"
-                 type="audio/mpeg" length="{{ post.length }}"/>
-      <itunes:duration>{{ post.duration }}</itunes:duration>
-      <guid isPermaLink="false">{{ post.guid }}</guid>
-    </item>
+      <item>
+        <title>{{ post.title }}</title>
+        <description>{{ post.description }}</description>
+        <itunes:image href="{{ site.url }}{{ site.baseurl }}/{{ site.image }}"/>
+        <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S PST" }}</pubDate>
+        <enclosure url="{{ site.url }}{{ site.baseurl }}/podcasts/{{ post.guid }}.mp3" type="audio/mpeg" length="{{ post.length }}"/>
+        <itunes:duration>{{ post.duration }}</itunes:duration>
+        <guid isPermaLink="false">{{ post.guid }}</guid>
+        <itunes:explicit>{{ post.explicit }}</itunes:explicit>
+      </item>
     {% endfor %}
   </channel>
 </rss>
