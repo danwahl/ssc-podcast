@@ -1,0 +1,6 @@
+pytz==2019.3
+nltk==3.4.5
+pydub==0.23.1
+boto3==1.10.34
+urllib3==1.25.7
+beautifulsoup4==4.8.1

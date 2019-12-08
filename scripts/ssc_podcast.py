@@ -3,6 +3,7 @@ from io import BytesIO
 import os
 import pytz
 import re
+import sys
 import urllib3
 
 from bs4 import BeautifulSoup
@@ -32,6 +33,8 @@ def get_audio(text):
 
 
 if __name__ == '__main__':
+    num = 0
+
     # setup nltk tokenizer
     # uncomment following line on first run
     # nltk.download('punkt')
@@ -122,3 +125,7 @@ if __name__ == '__main__':
 
         # uncomment to process single post
         # break
+        num += 1
+
+    # return 0 if podcasts added, otherwise 1
+    sys.exit(0 if num else 1)
