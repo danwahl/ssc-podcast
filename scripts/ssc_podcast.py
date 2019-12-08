@@ -64,8 +64,6 @@ if __name__ == '__main__':
         # check if filename already exists in podcasts folder, skip if so
         if filename in os.listdir(PODCASTS_PATH):
             continue
-        else:
-            print(name)
 
         # get post and parse
         res = http.request('GET', url)
@@ -83,6 +81,8 @@ if __name__ == '__main__':
         # create timezone aware datetime object from date and time
         dt = datetime.strptime(' '.join([date, time]), '%B %d, %Y %I:%M %p')
         dtz = pytz.timezone("US/Pacific").localize(dt)
+
+        print(dtz.strftime('%Y-%m-%d ') + name)
 
         # initialize pydub object, add introduction
         podcast = AudioSegment.silent(PARAGRAPH_SILENCE)
@@ -120,4 +120,5 @@ if __name__ == '__main__':
         with open(POSTS_PATH + dtz.strftime('%Y-%m-%d-') + name + '.md', 'w') as f:
             f.write(markdown)
 
-        break
+        # uncomment to process single post
+        # break
