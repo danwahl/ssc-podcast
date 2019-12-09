@@ -21,7 +21,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "/ssc-podcast" # the subpath of your site, e.g. /blog
 url: "http://danwahl.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 author: Dan Wahl
-image: "img/codex_spotlight.png"
+image: "img/ssc-podcast.png"
 permalink: /:title/
 
 # Build settings
