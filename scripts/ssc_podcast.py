@@ -96,15 +96,17 @@ if __name__ == '__main__':
         # split post into paragraphs, iterate through list
         paragraphs = post.find_all('p')
         for paragraph in paragraphs:
-            # split paragraph into sentences, iterate through each
-            sentences = tokenizer.tokenize(paragraph.text)
-            for sentence in sentences:
-                # add sentence audio and silence to podcast
-                podcast += AudioSegment.from_mp3(get_audio(sentence))
-                podcast += AudioSegment.silent(duration=SENTENCE_SILENCE)
-            # add slightly longer pause between paragraphs
-            podcast += AudioSegment.silent(PARAGRAPH_SILENCE -
-                                           SENTENCE_SILENCE)
+            # split paragraph by new lines, iterate through list
+            for line in paragraph.text.split('\n'):
+                # split paragraph into sentences, iterate through each
+                sentences = tokenizer.tokenize(line)
+                for sentence in sentences:
+                    # add sentence audio and silence to podcast
+                    podcast += AudioSegment.from_mp3(get_audio(sentence))
+                    podcast += AudioSegment.silent(duration=SENTENCE_SILENCE)
+                # add slightly longer pause between paragraphs
+                podcast += AudioSegment.silent(PARAGRAPH_SILENCE -
+                                               SENTENCE_SILENCE)
 
         # export podcast, get file duration and length
         podcast.export(
