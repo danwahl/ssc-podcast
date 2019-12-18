@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
         # initialize pydub object, add introduction
         podcast = AudioSegment.silent(PARAGRAPH_SILENCE)
-        intro = title + '\r\n\r\nPosted on ' + date + ' by' + author
+        intro = title + '\r\n\r\nPosted on ' + date + ' by ' + author
         podcast += AudioSegment.from_mp3(get_audio(intro))
         podcast += AudioSegment.silent(PARAGRAPH_SILENCE)
 
@@ -98,7 +98,7 @@ if __name__ == '__main__':
         for paragraph in paragraphs:
             # split paragraph by new lines, iterate through list
             for line in paragraph.text.split('\n'):
-                # split paragraph into sentences, iterate through each
+                # split line into sentences, iterate through each
                 sentences = tokenizer.tokenize(line)
                 for sentence in sentences:
                     # add sentence audio and silence to podcast
