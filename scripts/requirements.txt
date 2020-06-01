@@ -4,3 +4,4 @@ pydub==0.23.1
 boto3==1.10.34
 urllib3==1.25.7
 beautifulsoup4==4.8.1
+html5lib==1.0.1

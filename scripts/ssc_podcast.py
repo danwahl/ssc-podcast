@@ -52,7 +52,7 @@ if __name__ == '__main__':
 
     # get and parse archives
     res = http.request('GET', SSC_ARCHIVES)
-    soup = BeautifulSoup(res.data, "html.parser")
+    soup = BeautifulSoup(res.data, "html5lib")
 
     # get divs containing post links, iterate through list in reverse order
     divs = soup.find_all('div', attrs={'class': 'sya_postcontent'})
@@ -70,7 +70,7 @@ if __name__ == '__main__':
 
         # get post and parse
         res = http.request('GET', url)
-        soup = BeautifulSoup(res.data, "html.parser")
+        soup = BeautifulSoup(res.data, "html5lib")
 
         # get post content, get author, title, date, and time
         post = soup.find('div', attrs={'id': re.compile(r'post\-\d+')})
